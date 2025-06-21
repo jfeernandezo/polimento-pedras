@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,8 +6,18 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Phone, Mail, MapPin, Star, CheckCircle, Sparkles, Clock, Award, DollarSign, Zap } from 'lucide-react';
 
+interface VisibilityState {
+  hero?: boolean;
+  story?: boolean;
+  services?: boolean;
+  differentials?: boolean;
+  process?: boolean;
+  testimonials?: boolean;
+  contact?: boolean;
+}
+
 const Index = () => {
-  const [isVisible, setIsVisible] = useState({});
+  const [isVisible, setIsVisible] = useState<VisibilityState>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
