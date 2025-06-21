@@ -1,9 +1,11 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Phone, Mail, MapPin, Star, CheckCircle, Sparkles, Clock, Award, DollarSign, Zap } from 'lucide-react';
 
 interface VisibilityState {
@@ -87,36 +89,73 @@ const Index = () => {
     }
   ];
 
+  const carouselImages = [
+    {
+      url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      alt: "Mármore polido brilhante"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", 
+      alt: "Granito restaurado"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      alt: "Piso de pedra tratado"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+      {/* Hero Section with Carousel */}
       <section 
         id="hero" 
-        className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-marble-100 via-stone-50 to-elegant-50 overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        <div className="absolute inset-0 bg-marble-texture opacity-20"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-32 h-32 bg-elegant-200 rounded-full opacity-30 animate-pulse"></div>
-          <div className="absolute bottom-32 right-16 w-24 h-24 bg-stone-300 rounded-full opacity-20 animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-marble-400 rounded-full opacity-25 animate-pulse delay-500"></div>
+        {/* Background Carousel */}
+        <div className="absolute inset-0 z-0">
+          <Carousel className="w-full h-full" opts={{ loop: true }}>
+            <CarouselContent className="h-full">
+              {carouselImages.map((image, index) => (
+                <CarouselItem key={index} className="h-screen">
+                  <div className="relative h-full">
+                    <img 
+                      src={image.url}
+                      alt={image.alt}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/40"></div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-4 top-1/2 z-10 bg-white/20 border-white/30 text-white hover:bg-white/30" />
+            <CarouselNext className="absolute right-4 top-1/2 z-10 bg-white/20 border-white/30 text-white hover:bg-white/30" />
+          </Carousel>
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute inset-0 z-5">
+          <div className="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full opacity-30 animate-pulse"></div>
+          <div className="absolute bottom-32 right-16 w-24 h-24 bg-white/10 rounded-full opacity-20 animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-white/10 rounded-full opacity-25 animate-pulse delay-500"></div>
         </div>
         
         <div className={`relative z-10 text-center px-4 max-w-4xl mx-auto transition-all duration-1000 ${isVisible.hero ? 'animate-fade-in' : 'opacity-0'}`}>
-          <Badge variant="outline" className="mb-6 text-elegant-700 border-elegant-300 bg-white/80 backdrop-blur-sm">
+          <Badge variant="outline" className="mb-6 text-white border-white/50 bg-white/10 backdrop-blur-sm">
             Especialistas em Tratamento de Pedras
           </Badge>
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-stone-800 mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
             Seu Ambiente Merece{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-elegant-600 to-elegant-800 relative">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 relative">
               Brilhar
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-shine"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-30 animate-shine"></div>
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-stone-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
             Especialistas em Polimento, Restauração e Limpeza de Mármores, Granitos e Pedras em Geral. 
-            <span className="font-semibold text-elegant-700"> Qualidade Impecável, Atendimento Rápido e Preço Justo.</span>
+            <span className="font-semibold text-white"> Qualidade Impecável, Atendimento Rápido e Preço Justo.</span>
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -129,48 +168,69 @@ const Index = () => {
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-elegant-600 text-elegant-700 hover:bg-elegant-50 px-8 py-6 text-lg font-semibold transition-all duration-300"
+              className="border-white/50 text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold transition-all duration-300 backdrop-blur-sm"
             >
               Saiba Mais
             </Button>
           </div>
         </div>
         
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-elegant-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-elegant-400 rounded-full mt-2 animate-pulse"></div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
 
-      {/* Storytelling Section */}
+      {/* Storytelling Section with Marble Image */}
       <section 
         id="story" 
         className="py-20 bg-gradient-to-r from-white via-marble-50 to-white"
       >
         <div className="container mx-auto px-4">
-          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${isVisible.story ? 'animate-fade-in' : 'opacity-0'}`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-800 mb-8">
-              Mais que um Serviço, um <span className="text-elegant-600">Cuidado Artesanal</span>
-            </h2>
-            
-            <div className="prose prose-lg prose-stone max-w-none text-stone-600 leading-relaxed">
-              <p className="text-xl mb-6">
-                Nós somos a equipe que respira <strong className="text-elegant-700">cuidado e excelência</strong> em cada centímetro de pedra. 
-                Na Andreia Dias, entendemos que seu piso não é apenas uma superfície, é o coração do seu ambiente, 
-                contando histórias e recebendo sonhos.
-              </p>
+          <div className={`grid lg:grid-cols-2 gap-12 items-center transition-all duration-1000 ${isVisible.story ? 'animate-fade-in' : 'opacity-0'}`}>
+            {/* Marble Image */}
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Mármore brilhante polido"
+                  className="w-full h-96 object-cover transform hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
+                  <p className="text-sm font-semibold text-stone-800">Resultado Profissional</p>
+                </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-elegant-200 rounded-full opacity-20 animate-pulse"></div>
+              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-marble-400 rounded-full opacity-30 animate-pulse delay-1000"></div>
+            </div>
+
+            {/* Content */}
+            <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-800 mb-8">
+                Mais que um Serviço, um <span className="text-elegant-600">Cuidado Artesanal</span>
+              </h2>
               
-              <p className="text-lg mb-6">
-                Desde a remoção de um rejunte teimoso até o polimento final que reflete sua satisfação, 
-                nosso compromisso é com a <strong className="text-elegant-700">renovação e revitalização</strong>.
-              </p>
-              
-              <p className="text-lg">
-                Com <strong className="text-elegant-700">responsabilidade e técnica apurada</strong>, transformamos ambientes, 
-                entregando não só um piso limpo e agradável, mas a certeza de um trabalho bem-feito. 
-                Afinal, cuidar do seu espaço é o que nos move.
-              </p>
+              <div className="prose prose-lg prose-stone max-w-none text-stone-600 leading-relaxed space-y-6">
+                <p className="text-xl">
+                  Nós somos a equipe que respira <strong className="text-elegant-700">cuidado e excelência</strong> em cada centímetro de pedra. 
+                  Na Andreia Dias, entendemos que seu piso não é apenas uma superfície, é o coração do seu ambiente, 
+                  contando histórias e recebendo sonhos.
+                </p>
+                
+                <p className="text-lg">
+                  Desde a remoção de um rejunte teimoso até o polimento final que reflete sua satisfação, 
+                  nosso compromisso é com a <strong className="text-elegant-700">renovação e revitalização</strong>.
+                </p>
+                
+                <p className="text-lg">
+                  Com <strong className="text-elegant-700">responsabilidade e técnica apurada</strong>, transformamos ambientes, 
+                  entregando não só um piso limpo e agradável, mas a certeza de um trabalho bem-feito. 
+                  Afinal, cuidar do seu espaço é o que nos move.
+                </p>
+              </div>
             </div>
           </div>
         </div>
