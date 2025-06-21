@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -100,4 +101,68 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom styles for the stone treatment landing page */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .marble-shine {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+  
+  .marble-shine:hover {
+    transform: translateX(100%);
+  }
+  
+  .stone-texture {
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  }
+  
+  .elegant-gradient {
+    background: linear-gradient(135deg, #334e68 0%, #486581 50%, #627d98 100%);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Intersection Observer Animation Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom button hover effects */
+.btn-elegant {
+  @apply bg-gradient-to-r from-elegant-600 to-elegant-700 hover:from-elegant-700 hover:to-elegant-800;
+  @apply transform transition-all duration-300 hover:scale-105 hover:shadow-lg;
+}
+
+/* Marble-like background patterns */
+.bg-marble-pattern {
+  background-image: 
+    linear-gradient(90deg, rgba(255,255,255,0.05) 50%, transparent 50%),
+    linear-gradient(rgba(255,255,255,0.02) 50%, transparent 50%);
+  background-size: 20px 20px, 40px 40px;
 }

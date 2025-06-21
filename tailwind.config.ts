@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,42 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				stone: {
+					50: '#f8f9fa',
+					100: '#f1f3f4',
+					200: '#e8eaed',
+					300: '#dadce0',
+					400: '#bdc1c6',
+					500: '#9aa0a6',
+					600: '#80868b',
+					700: '#5f6368',
+					800: '#3c4043',
+					900: '#202124',
+				},
+				marble: {
+					50: '#fefefe',
+					100: '#fdfdfd',
+					200: '#fafafa',
+					300: '#f5f5f5',
+					400: '#eeeeee',
+					500: '#e0e0e0',
+					600: '#bdbdbd',
+					700: '#9e9e9e',
+					800: '#757575',
+					900: '#424242',
+				},
+				elegant: {
+					50: '#f0f4f8',
+					100: '#d9e2ec',
+					200: '#bcccdc',
+					300: '#9fb3c8',
+					400: '#829ab1',
+					500: '#627d98',
+					600: '#486581',
+					700: '#334e68',
+					800: '#243b53',
+					900: '#102a43',
 				}
 			},
 			borderRadius: {
@@ -84,11 +121,69 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'slide-in-left': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(-30px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'slide-in-right': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(30px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'scale(0.95)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'scale(1)'
+					}
+				},
+				'shine': {
+					'0%': {
+						transform: 'translateX(-100%)'
+					},
+					'100%': {
+						transform: 'translateX(100%)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'slide-in-left': 'slide-in-left 0.6s ease-out',
+				'slide-in-right': 'slide-in-right 0.6s ease-out',
+				'scale-in': 'scale-in 0.4s ease-out',
+				'shine': 'shine 2s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'marble-texture': 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+				'stone-texture': 'linear-gradient(145deg, #e8eaed 0%, #f1f3f4 50%, #fefefe 100%)'
 			}
 		}
 	},
