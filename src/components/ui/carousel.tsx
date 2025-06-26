@@ -2,6 +2,7 @@ import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay" // Importe o plugin Autoplay
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -56,12 +57,23 @@ const Carousel = React.forwardRef<
     },
     ref
   ) => {
+    // Adicione o plugin Autoplay aqui, com as opções desejadas
+    const autoplayOptions = React.useMemo(
+      () => ({
+        delay: 5000, // 5 segundos
+        stopOnInteraction: false, // Continua o autoplay mesmo após interação do usuário
+        stopOnLastSnap: false, // Continua o loop no último slide
+      }),
+      []
+    )
+
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
       },
-      plugins
+      // Use 'plugins || []' para garantir que é sempre um array antes de espalhar
+      [...(plugins || []), Autoplay(autoplayOptions)]
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)

@@ -112,7 +112,7 @@ const Index = () => {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
         {/* Background Carousel */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-10">
           <Carousel className="w-full h-full" opts={{ loop: true }}>
             <CarouselContent className="h-full">
               {carouselImages.map((image, index) => (
@@ -128,8 +128,8 @@ const Index = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-4 top-1/2 z-10 bg-white/20 border-white/30 text-white hover:bg-white/30" />
-            <CarouselNext className="absolute right-4 top-1/2 z-10 bg-white/20 border-white/30 text-white hover:bg-white/30" />
+            <CarouselPrevious className="absolute left-4 top-1/2 z-20 bg-white/20 border-white/30 text-white hover:bg-white/30" />
+            <CarouselNext className="absolute right-4 top-1/2 z-20 bg-white/20 border-white/30 text-white hover:bg-white/30" />
           </Carousel>
         </div>
 
@@ -146,9 +146,9 @@ const Index = () => {
           </Badge>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Seu Ambiente Merece{' '}
+            Seu Ambiente {' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 relative">
-              Brilhar
+              Merece Brilhar
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-30 animate-shine"></div>
             </span>
           </h1>
@@ -163,12 +163,12 @@ const Index = () => {
               size="lg" 
               className="bg-elegant-600 hover:bg-elegant-700 text-white px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
             >
-              Peça Seu Orçamento Grátis!
+              Solicite Seu Orçamento
             </Button>
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-white/50 text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold transition-all duration-300 backdrop-blur-sm"
+              className="border-white/50 text-gray-800 hover:bg-white/10 px-8 py-6 text-lg font-semibold transition-all duration-300 backdrop-blur-sm"
             >
               Saiba Mais
             </Button>
@@ -193,7 +193,7 @@ const Index = () => {
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src="https://images.unsplash.com/photo-1722858812731-d96eceb10f52?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Mármore brilhante polido"
                   className="w-full h-96 object-cover transform hover:scale-105 transition-transform duration-500"
                 />
@@ -385,7 +385,7 @@ const Index = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-white text-white hover:bg-white hover:text-elegant-600 px-8 py-4 text-lg font-semibold transition-all duration-300"
+            className="border-white text-gay-800 hover:bg-gray800 hover:text-elegant-600 px-8 py-4 text-lg font-semibold transition-all duration-300"
           >
             Consulte Condições
           </Button>
@@ -443,7 +443,7 @@ const Index = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-white text-white hover:bg-white hover:text-elegant-600 px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            className="border-white text-gay-800 hover:bg-white hover:text-elegant-600 px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
           >
             Solicite Seu Orçamento Sem Compromisso!
           </Button>
@@ -517,7 +517,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-stone-800">E-mail</p>
-                      <p className="text-stone-600">contato@andreiadias.com.br</p>
+                      <p className="text-stone-600">contato@polimentopedras.com.br</p>
                     </div>
                   </div>
                   
@@ -554,7 +554,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4 text-elegant-300">
-                Andreia Dias
+                Polimento Pedras
               </h3>
               <p className="text-stone-300 mb-4">
                 Especialistas em tratamento, polimento e restauração de pedras naturais. 
@@ -594,7 +594,7 @@ const Index = () => {
           </div>
           
           <div className="border-t border-stone-700 mt-8 pt-8 text-center text-stone-400">
-            <p>&copy; 2024 Andreia Dias - Tratamento de Pedras. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Polimento Pedras - Tratamento de Pedras. Todos os direitos reservados.</p>
             <p className="mt-2 text-sm">
               Responsabilidade • Qualidade • Preço Justo • Excelentes Referências
             </p>
