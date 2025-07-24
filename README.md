@@ -1,73 +1,99 @@
-# Welcome to your Lovable project
+# 💎 Polimento Pedras - Website Institucional
 
-## Project info
+![Screenshot do Projeto](caminho/para/sua/imagem.png)
 
-**URL**: https://lovable.dev/projects/76ae359d-ccd7-4c7c-afc2-41e7caa867ed
+> Website institucional moderno e responsivo para a empresa Polimento Pedras, especialista em tratamento, polimento e restauração de mármores, granitos e pedras em geral.
 
-## How can I edit this code?
+[🔗 Ver Demo Ao Vivo](https://polimentopedras.com.br/)
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 📖 Sobre o Projeto
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/76ae359d-ccd7-4c7c-afc2-41e7caa867ed) and start prompting.
+Este projeto foi desenvolvido para apresentar os serviços da Polimento Pedras, destacando seus diferenciais e facilitando o contato com novos clientes. O objetivo foi criar uma presença online profissional, transmitindo a qualidade e a confiança que a empresa oferece em seus trabalhos.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## ✨ Funcionalidades
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+-   **Design Responsivo:** Totalmente adaptável para visualização em desktops, tablets e celulares.
+-   **Animações de Entrada:** Elementos que surgem suavemente conforme o usuário rola a página, criando uma experiência de navegação mais dinâmica.
+-   **Carrossel de Imagens:** Apresentação visual dos ambientes e resultados dos serviços.
+-   **Formulário de Contato:** Canal direto para solicitação de orçamentos e informações.
+-   **SEO Otimizado:** Estrutura pensada para um bom ranqueamento em mecanismos de busca.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🚀 Tecnologias Utilizadas
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Este projeto foi construído com as seguintes tecnologias:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+-   **React:** Biblioteca para construção da interface de usuário.
+-   **TypeScript:** Superset do JavaScript que adiciona tipagem estática.
+-   **Vite:** Ferramenta de build moderna e ultrarrápida.
+-   **Tailwind CSS:** Framework CSS utilitário para estilização rápida e responsiva.
+-   **shadcn/ui:** Componentes de UI reutilizáveis. *(Se você usou, mantenha. Se não, remova)*
+-   **React Router:** Para gerenciamento das rotas da aplicação. *(Se aplicável)*
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 🏁 Começando
 
-**Edit a file directly in GitHub**
+Para rodar este projeto localmente, siga os passos abaixo.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Pré-requisitos
 
-**Use GitHub Codespaces**
+Você precisa ter o [Node.js](https://nodejs.org/en/) e o [npm](https://www.npmjs.com/) (ou [Yarn](https://yarnpkg.com/)) instalados em sua máquina.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Instalação
 
-## What technologies are used for this project?
+1.  Clone o repositório:
+    ```sh
+    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+    ```
+2.  Navegue até o diretório do projeto:
+    ```sh
+    cd seu-repositorio
+    ```
+3.  Instale as dependências:
+    ```sh
+    npm install
+    ```
+4.  Inicie o servidor de desenvolvimento:
+    ```sh
+    npm run dev
+    ```
+    Abra [http://localhost:5173](http://localhost:5173) (ou a porta que aparecer no terminal) para visualizar no seu navegador.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📜 Scripts Disponíveis
 
-## How can I deploy this project?
+-   `npm run dev`: Inicia o servidor de desenvolvimento com hot-reload.
+-   `npm run build`: Gera a versão de produção otimizada do site na pasta `dist`.
+-   `npm run preview`: Inicia um servidor local para visualizar a versão de produção.
 
-Simply open [Lovable](https://lovable.dev/projects/76ae359d-ccd7-4c7c-afc2-41e7caa867ed) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 📦 Deploy
 
-Yes, you can!
+O processo de deploy foi realizado na **Hostinger**.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Para atualizar o site, o ciclo é:
+1.  Fazer as alterações no código.
+2.  Gerar a versão de produção com `npm run build`.
+3.  Fazer o upload do conteúdo da pasta `dist` para a pasta `public_html` no servidor da Hostinger.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+## 📄 Licença
+
+Distribuído sob a licença MIT. Veja `LICENSE.md` para mais informações.
+
+---
+
+## 📬 Contato
+
+[Júlio Fernandez] - [fernandez@agenciacontrast.com.br](mailto:fernandez@agenciacontrast.com.br)
+
+Link do Projeto: [https://github.com/jfeernandezo](https://github.com/jfeernandezo)

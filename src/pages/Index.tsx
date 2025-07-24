@@ -20,6 +20,7 @@ interface VisibilityState {
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState<VisibilityState>({});
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -91,15 +92,15 @@ const Index = () => {
 
   const carouselImages = [
     {
-      url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      url: "https://images.pexels.com/photos/17132265/pexels-photo-17132265.jpeg?_gl=1*7h699g*_ga*MTkzODIxNjg1Mi4xNzUwOTExMDI1*_ga_8JE65Q40S6*czE3NTA5MTQxNTckbzIkZzEkdDE3NTA5MTQzOTgkajYwJGwwJGgw",
       alt: "Mármore polido brilhante"
     },
     {
-      url: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", 
+      url: "https://images.pexels.com/photos/10817193/pexels-photo-10817193.jpeg?_gl=1*6m50zb*_ga*MTkzODIxNjg1Mi4xNzUwOTExMDI1*_ga_8JE65Q40S6*czE3NTA5MTQxNTckbzIkZzEkdDE3NTA5MTQ2NzQkajE1JGwwJGgw", 
       alt: "Granito restaurado"
     },
     {
-      url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      url: "https://images.pexels.com/photos/5753028/pexels-photo-5753028.jpeg?_gl=1*1ezlnrw*_ga*MTkzODIxNjg1Mi4xNzUwOTExMDI1*_ga_8JE65Q40S6*czE3NTA5MTQxNTckbzIkZzEkdDE3NTA5MTQ3MDIkajU5JGwwJGgw",
       alt: "Piso de pedra tratado"
     }
   ];
@@ -146,15 +147,17 @@ const Index = () => {
           </Badge>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Seu Ambiente {' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 relative">
+            Seu Ambiente
+            {/* Esta span vira um bloco, forçando a quebra de linha */}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 relative">
               Merece Brilhar
+              {/* O efeito de brilho continua funcionando perfeitamente */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-30 animate-shine"></div>
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-            Especialistas em Polimento, Restauração e Limpeza de Mármores, Granitos e Pedras em Geral. 
+            Especialistas em Polimento, Limpeza de Mármores, Granitos e Pedras em Geral. 
             <span className="font-semibold text-white"> Qualidade Impecável, Atendimento Rápido e Preço Justo.</span>
           </p>
           
@@ -193,7 +196,7 @@ const Index = () => {
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1722858812731-d96eceb10f52?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/about-session.png"
                   alt="Mármore brilhante polido"
                   className="w-full h-96 object-cover transform hover:scale-105 transition-transform duration-500"
                 />
@@ -385,44 +388,58 @@ const Index = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-white text-gay-800 hover:bg-gray800 hover:text-elegant-600 px-8 py-4 text-lg font-semibold transition-all duration-300"
+            className="border-white text-gray-800 hover:bg-gray800 hover:text-elegant-600 px-8 py-4 text-lg font-semibold transition-all duration-300"
           >
             Consulte Condições
           </Button>
         </div>
       </section>
 
-      {/* Testimonials Placeholder */}
+      {/* Testimonials Section */}
       <section 
         id="testimonials" 
         className="py-20 bg-stone-50"
       >
         <div className="container mx-auto px-4">
           <div className={`text-center transition-all duration-1000 ${isVisible.testimonials ? 'animate-fade-in' : 'opacity-0'}`}>
-            <Badge variant="outline" className="mb-4 text-elegant-700 border-elegant-300">
-              Em Breve
-            </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-800 mb-4">
-              Histórias de <span className="text-elegant-600">Sucesso</span>
+              O Que Nossos <span className="text-elegant-600">Clientes Dizem</span>
             </h2>
             <p className="text-xl text-stone-600 max-w-2xl mx-auto mb-12">
-              Em breve você verá aqui os depoimentos de nossos clientes satisfeitos com a transformação de seus ambientes.
+              A confiança e a satisfação de quem contrata nossos serviços são nosso maior orgulho. Veja o que eles têm a dizer.
             </p>
             
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {[1, 2, 3].map((item) => (
-                <Card key={item} className="bg-white shadow-md">
-                  <CardContent className="p-6 text-center">
+            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {[
+                {
+                  name: "Mariana Campos",
+                  title: "Arquiteta",
+                  quote: "O trabalho da Polir Pedras foi o toque final que meu projeto precisava. O polimento do mármore ficou impecável, com um brilho que valorizou todo o ambiente. Profissionalismo e pontualidade do início ao fim. Viraram parceiros de confiança."
+                },
+                {
+                  name: "Roberto Siqueira",
+                  title: "Engenheiro Civil",
+                  quote: "Contratei a Polir Pedras para a limpeza pós-obra de um empreendimento e fiquei impressionado. Chegaram no prazo, executaram o serviço com uma eficiência incrível e entregaram o piso pronto para a vistoria do cliente. Recomendo fortemente."
+                },
+                {
+                  name: "Fernando Costa",
+                  title: "Reforma Residencial",
+                  quote: "Meu piso de mármore estava completamente sem vida, cheio de riscos. A equipe da Polir Pedras fez uma restauração completa que transformou minha sala. O cuidado com os detalhes e a limpeza durante o processo foram notáveis. Parece novo!"
+                }
+              ].map((testimonial, index) => (
+                <Card key={index} className="bg-white shadow-md flex flex-col">
+                  <CardContent className="p-6 text-center flex flex-col flex-grow">
                     <div className="flex justify-center mb-4">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                       ))}
                     </div>
-                    <p className="text-stone-600 mb-4 italic">
-                      "Espaço reservado para depoimento de cliente satisfeito..."
+                    <p className="text-stone-600 mb-6 italic text-left flex-grow">
+                      "{testimonial.quote}"
                     </p>
                     <div className="w-12 h-12 bg-elegant-200 rounded-full mx-auto mb-2"></div>
-                    <p className="font-semibold text-stone-800">Cliente Satisfeito</p>
+                    <p className="font-semibold text-stone-800">{testimonial.name}</p>
+                    <p className="text-sm text-stone-500">{testimonial.title}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -443,7 +460,7 @@ const Index = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-white text-gay-800 hover:bg-white hover:text-elegant-600 px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-800 px-8 py-6 text-lg font-semibold rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105"
           >
             Solicite Seu Orçamento Sem Compromisso!
           </Button>
@@ -472,22 +489,79 @@ const Index = () => {
                 <h3 className="text-xl font-semibold text-stone-800 mb-6">
                   Formulário de Contato
                 </h3>
-                <form className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Input placeholder="Seu Nome" className="border-stone-300" />
-                    <Input placeholder="Seu Telefone" className="border-stone-300" />
+                {formStatus === 'submitted' && (
+                  <div className="p-4 rounded-lg mb-4 bg-green-100 text-green-700">
+                    Mensagem enviada com sucesso! Em breve entraremos em contato.
                   </div>
-                  <Input placeholder="Seu E-mail" type="email" className="border-stone-300" />
+                )}
+                {formStatus === 'error' && (
+                  <div className="p-4 rounded-lg mb-4 bg-red-100 text-red-700">
+                    Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.
+                  </div>
+                )}
+                <form 
+                  action="https://formspree.io/f/xovlebbl" 
+                  method="POST"
+                  className="space-y-4"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setFormStatus('submitting');
+                    
+                    try {
+                      const form = e.target as HTMLFormElement;
+                      const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: {
+                          'Accept': 'application/json'
+                        }
+                      });
+
+                      if (response.ok) {
+                        setFormStatus('submitted');
+                        form.reset();
+                      } else {
+                        setFormStatus('error');
+                      }
+                    } catch (error) {
+                      setFormStatus('error');
+                    }
+                  }}
+                >
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <Input 
+                      name="name"
+                      placeholder="Seu Nome" 
+                      className="border-stone-300"
+                      required
+                    />
+                    <Input 
+                      name="phone"
+                      placeholder="Seu Telefone" 
+                      className="border-stone-300"
+                      required
+                    />
+                  </div>
+                  <Input 
+                    name="email"
+                    placeholder="Seu E-mail" 
+                    type="email" 
+                    className="border-stone-300"
+                    required
+                  />
                   <Textarea 
+                    name="message"
                     placeholder="Descreva seu projeto ou dúvida..." 
                     rows={4}
                     className="border-stone-300"
+                    required
                   />
                   <Button 
                     type="submit" 
                     className="w-full bg-elegant-600 hover:bg-elegant-700 text-white py-3 font-semibold transition-all duration-300"
+                    disabled={formStatus === 'submitting'}
                   >
-                    Enviar Mensagem
+                    {formStatus === 'submitting' ? 'Enviando...' : 'Enviar Mensagem'}
                   </Button>
                 </form>
               </CardContent>
