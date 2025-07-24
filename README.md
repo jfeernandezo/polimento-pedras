@@ -96,4 +96,8 @@ Distribuído sob a licença MIT. Veja `LICENSE.md` para mais informações.
 
 [Júlio Fernandez] - [fernandez@agenciacontrast.com.br](mailto:fernandez@agenciacontrast.com.br)
 
+<<<<<<< HEAD
 Link do Projeto: [https://github.com/jfeernandezo](https://github.com/jfeernandezo)
+=======
+Link do Projeto: [https://github.com/jfeernandezo](https://github.com/jfeernandezo)
+>>>>>>> 54b7625743263966937964746fc1ae9065594aef
