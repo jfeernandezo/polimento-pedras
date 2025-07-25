@@ -329,7 +329,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <Card 
                 key={index}
@@ -408,7 +408,10 @@ const Index = () => {
                   {[
                     "/diferencial-1.png",
                     "/diferencial-2.png",
-                    "/diferencial-3.png"
+                    "/diferencial-3.png",
+                    "/diferencial-4.png",
+                    "/diferencial-5.png",
+                    "/diferencial-6.png"
                   ].map((image, index) => (
                     <CarouselItem key={index}>
                       <div className="relative aspect-[4/3] w-full">
@@ -449,7 +452,7 @@ const Index = () => {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { step: "01", title: "Análise Detalhada", desc: "Entendemos a necessidade do seu material e ambiente." },
                 { step: "02", title: "Preparação Cuidadosa", desc: "Respeitamos o tempo e as características de cada material." },
@@ -512,7 +515,7 @@ const Index = () => {
               A confiança e a satisfação de quem contrata nossos serviços são nosso maior orgulho. Veja o que eles têm a dizer.
             </p>
             
-            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto md:px-8">
               {[
                 {
                   name: "Mariana Campos",
@@ -585,7 +588,7 @@ const Index = () => {
             </h2>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto md:px-8">
             {/* Contact Form */}
             <Card className={`shadow-lg transition-all duration-1000 ${isVisible.contact ? 'animate-slide-in-left' : 'opacity-0'}`}>
               <CardContent className="p-8">
@@ -728,7 +731,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-stone-800 text-white py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
               <h3 className="text-xl font-bold mb-4 text-elegant-300">
                 Polimento Pedras
