@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Phone, Mail, MapPin, Star, CheckCircle, Sparkles, Clock, Award, DollarSign, Zap } from 'lucide-react';
+import { MobileMenu } from '@/components/ui/mobile-menu';
 
 interface VisibilityState {
   hero?: boolean;
@@ -21,6 +22,17 @@ interface VisibilityState {
 const Index = () => {
   const [isVisible, setIsVisible] = useState<VisibilityState>({});
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle header background on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -90,48 +102,107 @@ const Index = () => {
     }
   ];
 
-  const carouselImages = [
-    {
-      url: "https://images.pexels.com/photos/17132265/pexels-photo-17132265.jpeg?_gl=1*7h699g*_ga*MTkzODIxNjg1Mi4xNzUwOTExMDI1*_ga_8JE65Q40S6*czE3NTA5MTQxNTckbzIkZzEkdDE3NTA5MTQzOTgkajYwJGwwJGgw",
-      alt: "Mármore polido brilhante"
-    },
-    {
-      url: "https://images.pexels.com/photos/10817193/pexels-photo-10817193.jpeg?_gl=1*6m50zb*_ga*MTkzODIxNjg1Mi4xNzUwOTExMDI1*_ga_8JE65Q40S6*czE3NTA5MTQxNTckbzIkZzEkdDE3NTA5MTQ2NzQkajE1JGwwJGgw", 
-      alt: "Granito restaurado"
-    },
-    {
-      url: "https://images.pexels.com/photos/5753028/pexels-photo-5753028.jpeg?_gl=1*1ezlnrw*_ga*MTkzODIxNjg1Mi4xNzUwOTExMDI1*_ga_8JE65Q40S6*czE3NTA5MTQxNTckbzIkZzEkdDE3NTA5MTQ3MDIkajU5JGwwJGgw",
-      alt: "Piso de pedra tratado"
-    }
-  ];
+  // Hero background image removed in favor of a single static image
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section with Carousel */}
+      {/* Header */}
+      <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-sm shadow-sm py-2' 
+          : 'bg-gradient-to-b from-black/50 to-transparent py-4'
+      }`}>
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <div className="flex items-center">
+              <img
+                src="/logo.png"
+                alt="Polimento Pedras Logo"
+                className={`transition-all duration-300 ${
+                  isScrolled ? 'h-12' : 'h-16'
+                } w-auto object-contain filter ${
+                  isScrolled ? 'brightness-90' : 'brightness-100'
+                }`}
+                loading="eager"
+              />
+            </div>
+
+            {/* Navigation - Mobile First */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <a 
+                href="#services" 
+                className={`transition-colors ${
+                  isScrolled 
+                    ? 'text-stone-600 hover:text-elegant-600' 
+                    : 'text-white hover:text-elegant-200'
+                }`}
+              >
+                Serviços
+              </a>
+              <a 
+                href="#differentials" 
+                className={`transition-colors ${
+                  isScrolled 
+                    ? 'text-stone-600 hover:text-elegant-600' 
+                    : 'text-white hover:text-elegant-200'
+                }`}
+              >
+                Diferenciais
+              </a>
+              <a 
+                href="#testimonials" 
+                className={`transition-colors ${
+                  isScrolled 
+                    ? 'text-stone-600 hover:text-elegant-600' 
+                    : 'text-white hover:text-elegant-200'
+                }`}
+              >
+                Depoimentos
+              </a>
+              <a 
+                href="#contact" 
+                className={`transition-colors ${
+                  isScrolled 
+                    ? 'text-stone-600 hover:text-elegant-600' 
+                    : 'text-white hover:text-elegant-200'
+                }`}
+              >
+                Contato
+              </a>
+            </nav>
+
+            {/* CTA Button */}
+            <div className="flex items-center space-x-4">
+              <Button
+                size="sm"
+                className="hidden md:flex bg-elegant-600 hover:bg-elegant-700 text-white transition-all duration-300"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Solicitar Orçamento
+              </Button>
+
+              {/* Mobile Menu */}
+              <MobileMenu />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
       <section 
         id="hero" 
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Background Carousel */}
+        {/* Background Image */}
         <div className="absolute inset-0 z-10">
-          <Carousel className="w-full h-full" opts={{ loop: true }}>
-            <CarouselContent className="h-full">
-              {carouselImages.map((image, index) => (
-                <CarouselItem key={index} className="h-screen">
-                  <div className="relative h-full">
-                    <img 
-                      src={image.url}
-                      alt={image.alt}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/40"></div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-4 top-1/2 z-20 bg-white/20 border-white/30 text-white hover:bg-white/30" />
-            <CarouselNext className="absolute right-4 top-1/2 z-20 bg-white/20 border-white/30 text-white hover:bg-white/30" />
-          </Carousel>
+          <img 
+            src="https://images.pexels.com/photos/17132265/pexels-photo-17132265.jpeg?_gl=1*7h699g*_ga*MTkzODIxNjg1Mi4xNzUwOTExMDI1*_ga_8JE65Q40S6*czE3NTA5MTQxNTckbzIkZzEkdDE3NTA5MTQzOTgkajYwJGwwJGgw"
+            alt="Mármore polido brilhante"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
         </div>
 
         {/* Decorative elements */}
@@ -157,14 +228,15 @@ const Index = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-            Especialistas em Polimento, Limpeza de Mármores, Granitos e Pedras em Geral. 
-            <span className="font-semibold text-white"> Qualidade Impecável, Atendimento Rápido e Preço Justo.</span>
+            Especialistas em polimento e impermeabilização de mármore, granito, marmorite, granito. limpeza de pedras em geral. Remoção e aplicação de resinas, rejuntamento com massa plástica.
+            <span className="font-semibold text-white"> Qualidade impecável, atendimento rápido e preço justo.</span>
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               size="lg" 
               className="bg-elegant-600 hover:bg-elegant-700 text-white px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              onClick={() => window.open(`https://wa.me/5531988495042?text=${encodeURIComponent('Olá, vim do site e gostaria de um orçamento.')}`, '_blank')}
             >
               Solicite Seu Orçamento
             </Button>
@@ -250,14 +322,14 @@ const Index = () => {
               Nossos Serviços
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-800 mb-4">
-              Expertise que Deixa Marcas – <span className="text-elegant-600">Só que de Brilho!</span>
+              Expertise que Deixa Marcas, <span className="text-elegant-600">Só que de Brilho!</span>
             </h2>
             <p className="text-xl text-stone-600 max-w-3xl mx-auto">
               Descomplicamos o tratamento de pedras com uma gama completa de serviços feitos sob medida para sua necessidade
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <Card 
                 key={index}
@@ -301,28 +373,62 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {differentials.map((item, index) => (
-              <div 
-                key={index}
-                className={`flex items-start space-x-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ${
-                  isVisible.differentials ? 'animate-slide-in-left' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="flex-shrink-0 p-3 bg-elegant-100 rounded-full">
-                  {item.icon}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Cards na Vertical */}
+            <div className="space-y-4">
+              {differentials.map((item, index) => (
+                <div 
+                  key={index}
+                  className={`flex items-start space-x-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ${
+                    isVisible.differentials ? 'animate-slide-in-left' : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  <div className="flex-shrink-0 p-3 bg-elegant-100 rounded-full">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-stone-800 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-stone-600">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-stone-800 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-stone-600">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Carrossel */}
+            <div className={`relative overflow-hidden rounded-2xl shadow-2xl ${
+              isVisible.differentials ? 'animate-slide-in-right' : 'opacity-0'
+            }`}>
+              <Carousel className="w-full" opts={{ loop: true }}>
+                <CarouselContent>
+                  {[
+                    "/diferencial-1.png",
+                    "/diferencial-2.png",
+                    "/diferencial-3.png",
+                    "/diferencial-4.png",
+                    "/diferencial-5.png",
+                    "/diferencial-6.png"
+                  ].map((image, index) => (
+                    <CarouselItem key={index}>
+                      <div className="relative aspect-[4/3] w-full">
+                        <img
+                          src={image}
+                          alt={`Diferencial ${index + 1}`}
+                          className="object-cover w-full h-full rounded-lg"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
+              </Carousel>
+            </div>
           </div>
         </div>
       </section>
@@ -346,7 +452,7 @@ const Index = () => {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { step: "01", title: "Análise Detalhada", desc: "Entendemos a necessidade do seu material e ambiente." },
                 { step: "02", title: "Preparação Cuidadosa", desc: "Respeitamos o tempo e as características de cada material." },
@@ -409,7 +515,7 @@ const Index = () => {
               A confiança e a satisfação de quem contrata nossos serviços são nosso maior orgulho. Veja o que eles têm a dizer.
             </p>
             
-            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto md:px-8">
               {[
                 {
                   name: "Mariana Campos",
@@ -434,10 +540,9 @@ const Index = () => {
                         <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                       ))}
                     </div>
-                    <p className="text-stone-600 mb-6 italic text-left flex-grow">
+                    <p className="text-stone-600 mb-4 italic text-left flex-grow">
                       "{testimonial.quote}"
                     </p>
-                    <div className="w-12 h-12 bg-elegant-200 rounded-full mx-auto mb-2"></div>
                     <p className="font-semibold text-stone-800">{testimonial.name}</p>
                     <p className="text-sm text-stone-500">{testimonial.title}</p>
                   </CardContent>
@@ -461,6 +566,7 @@ const Index = () => {
             size="lg" 
             variant="outline" 
             className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-800 px-8 py-6 text-lg font-semibold rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105"
+            onClick={() => window.open(`https://wa.me/5531988495042?text=${encodeURIComponent('Olá, vim do site e gostaria de um orçamento.')}`, '_blank')}
           >
             Solicite Seu Orçamento Sem Compromisso!
           </Button>
@@ -482,7 +588,7 @@ const Index = () => {
             </h2>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto md:px-8">
             {/* Contact Form */}
             <Card className={`shadow-lg transition-all duration-1000 ${isVisible.contact ? 'animate-slide-in-left' : 'opacity-0'}`}>
               <CardContent className="p-8">
@@ -581,7 +687,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-stone-800">Telefone</p>
-                      <p className="text-stone-600">(11) 99999-9999</p>
+                      <p className="text-stone-600">(31) 98849-5042</p>
                     </div>
                   </div>
                   
@@ -601,7 +707,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-stone-800">Atendimento</p>
-                      <p className="text-stone-600">Grande São Paulo e Região</p>
+                      <p className="text-stone-600">Atendemos em BH e Região Metropolitana</p>
                     </div>
                   </div>
                 </div>
@@ -625,7 +731,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-stone-800 text-white py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
               <h3 className="text-xl font-bold mb-4 text-elegant-300">
                 Polimento Pedras
@@ -635,12 +741,12 @@ const Index = () => {
                 Transformando ambientes com qualidade e excelência.
               </p>
               <div className="flex space-x-4">
-                <div className="w-8 h-8 bg-elegant-600 rounded-full flex items-center justify-center">
+                <a href="tel:+5531988495042" className="w-8 h-8 bg-elegant-600 rounded-full flex items-center justify-center hover:bg-elegant-700 transition-colors">
                   <Phone className="w-4 h-4" />
-                </div>
-                <div className="w-8 h-8 bg-elegant-600 rounded-full flex items-center justify-center">
+                </a>
+                <a href="mailto:contato@polimentopedras.com.br" className="w-8 h-8 bg-elegant-600 rounded-full flex items-center justify-center hover:bg-elegant-700 transition-colors">
                   <Mail className="w-4 h-4" />
-                </div>
+                </a>
               </div>
             </div>
             
