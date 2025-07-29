@@ -291,7 +291,7 @@ const Index = () => {
               <div className="prose prose-lg prose-stone max-w-none text-stone-600 leading-relaxed space-y-6">
                 <p className="text-xl">
                   Nós somos a equipe que respira <strong className="text-elegant-700">cuidado e excelência</strong> em cada centímetro de pedra. 
-                  Na Andreia Dias, entendemos que seu piso não é apenas uma superfície, é o coração do seu ambiente, 
+                  Na Polir Pedras, entendemos que seu piso não é apenas uma superfície, é o coração do seu ambiente, 
                   contando histórias e recebendo sonhos.
                 </p>
                 
@@ -369,7 +369,7 @@ const Index = () => {
               Nossos Diferenciais São Seu <span className="text-elegant-600">Brilho!</span>
             </h2>
             <p className="text-xl text-stone-600 max-w-3xl mx-auto">
-              Sabemos que você busca confiança, qualidade e resultados. É por isso que na Andreia Dias, você encontra:
+              Sabemos que você busca confiança, qualidade e resultados. É por isso que na Polir Pedras, você encontra:
             </p>
           </div>
           
@@ -457,7 +457,7 @@ const Index = () => {
                 { step: "01", title: "Análise Detalhada", desc: "Entendemos a necessidade do seu material e ambiente." },
                 { step: "02", title: "Preparação Cuidadosa", desc: "Respeitamos o tempo e as características de cada material." },
                 { step: "03", title: "Execução Precisa", desc: "Seguimos a sequência ideal de lixas e produtos para o acabamento perfeito." },
-                { step: "04", title: "Entrega do Brilho", desc: "Você recebe um ambiente renovado, limpo e com a qualidade Andreia Dias." }
+                { step: "04", title: "Entrega do Brilho", desc: "Você recebe um ambiente renovado, limpo e com a qualidade Polir Pedras." }
               ].map((item, index) => (
                 <div 
                   key={index}
